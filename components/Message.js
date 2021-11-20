@@ -1,6 +1,6 @@
 
 import PropTypes from 'prop-types';
-const ErrorMessage = ({message}) => {
+const Message = ({message}) => {
     return (
         <div>
            <h1>{message}</h1> 
@@ -8,10 +8,10 @@ const ErrorMessage = ({message}) => {
     )
 }
 
-ErrorMessage.propTypes ={
+Message.propTypes ={
     message:PropTypes.string.isRequired
 }
 
-export default ErrorMessage;
+export default Message;
 
 

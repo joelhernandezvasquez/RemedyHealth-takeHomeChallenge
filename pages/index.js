@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link';
-import { useState } from 'react';
-import ErrorMessage from '../components/ErrorMessage';
+import { useState,useEffect } from 'react';
+import Message from '../components/Message';
 import { createPost } from './api/main';
 import styles from '../styles/Home.module.css'
 
@@ -10,6 +10,7 @@ export default function Home() {
   const[name,setName] = useState("");
   const [message,setMessage] = useState("");
  const [emptyFields,setEmptyFields] = useState(false);
+ const [isPostSavedMessage,setPostSaved] = useState(false);
 
   const validateInputFields = () =>{
     if(!name){
@@ -21,16 +22,41 @@ export default function Home() {
     return true;
   } 
 
-  const submitForm =(e) =>{
+  const submitForm = async (e) =>{
     e.preventDefault();
+    
     if(validateInputFields()){
      setEmptyFields(false);
-     createPost({name,message})
+    
+     const result = await createPost({name,message})
+     if(result.success){
+       setPostSaved(true)
+     }
+     if(result.error)
+     {
+       alert(result.data);
+     }
     }
+     
+     
+    
     else{
      setEmptyFields(true);
     }
   }
+
+  const clearInputFields = () =>{
+    setName("");
+    setMessage("");
+  }
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setPostSaved(false)
+      clearInputFields();
+      
+    },3000)
+  },[isPostSavedMessage])
   return (
     <div className={styles.container}>
       <Head>
@@ -43,7 +69,10 @@ export default function Home() {
      
       <form className={styles.main_form}>
        <h2 className={styles.form_title}>Send Us a Message</h2>
-        {emptyFields? <ErrorMessage message = {"Please all fields must be filled out"}/>:null}
+        
+        {emptyFields? <Message message = {"Please all fields must be filled out"}/>:null}
+        {isPostSavedMessage && <Message message = {'Success your post has been saved'}/>}
+        
         <div className={styles.input_container}>
           <label htmlFor="name">Name</label>
           <input type="text" name="name" value ={name} onChange = {(e)=> setName(e.target.value)}/>
