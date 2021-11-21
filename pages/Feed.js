@@ -17,7 +17,7 @@ const Feed = () => {
         setPosts(posts.data)
       }
       if (posts.error) {
-        alert(post.data)
+        alert(posts.data)
       }
     }
 
