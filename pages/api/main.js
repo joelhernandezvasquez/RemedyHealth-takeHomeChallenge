@@ -21,7 +21,7 @@ export const createPost = async data => {
 // Function to make a GET request to the endpoint /guestbook
 export const getPosts = async () => {
   try {
-    const response = await fetch('/guestbook')
+    const response = await fetch(`${API_URL}/guestbook`)
     const result = await response.json()
 
     return {
