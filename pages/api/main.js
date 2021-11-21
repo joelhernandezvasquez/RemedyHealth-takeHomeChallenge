@@ -4,7 +4,7 @@ import {API_URL} from '../../config/index'
 // Function to make a POST request to the endpoint /api/guestbook
 export const createPost = async data => {
   try {
-    const response = await axios.post(`${API_URL}/guestbook`, { data })
+    const response = await axios.post(`${API_URL}/api/guestbook`, { data })
     return {
       success: true,
       data: response.status
