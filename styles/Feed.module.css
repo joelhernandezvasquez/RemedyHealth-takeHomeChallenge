@@ -1,0 +1,47 @@
+.container {
+    max-width: 1200px;
+    padding: 0 24px;
+    margin: 40px auto;
+}
+
+.home_link_container {
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.posts_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(327px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+}
+
+.post {
+    width: 300px;
+    background: #FFFFFF;
+    border-radius: 6px;
+    padding: 24px 32px;
+    max-width: 450px;
+}
+
+.post_name {
+    font-size: 1.5rem;
+    color: #202224;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.post_message {
+    font-size: 1rem;
+    color: #202224;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+
+@media(min-width:767px) {
+    .home_link_container {
+
+        font-size: 1.2rem;
+    }
+}
